@@ -1,50 +1,12 @@
 package com.example.SpringEndpointCheckpoint;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
-          "Credits": [
-          {
-          "Person": {
-          "Role": "Director",
-          "FirstName": "Francis Ford",
-          "LastName": "Copolla"
-          }
-          },
-          {
-          "Person": {
-          "Role": "Star",
-          "FirstName": "Marlon",
-          "LastName": "Brando"
-          }
-          },
-          {
-          "Person": {
-          "Role": "Star",
-          "FirstName": "Al",
-          "LastName": "Pacino"
-          }
-          },
-          {
-          "Person": {
-          "Role": "Star",
-          "FirstName": "James",
-          "LastName": "Caan"
-          }
-          },
-          {
-          "Person": {
-          "Role": "Star",
-          "FirstName": "Diane",
-          "LastName": "Keaton"
-          }
-          }
-          ]
-          } */
-@RestController
 public class Movie {
 
         private String Title;
@@ -53,7 +15,16 @@ public class Movie {
         private double Rating;
         private int Metascore;
         private String Description;
-        private Credit[] credits;
+
+    public Credit[] getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Credit[] credits) {
+        this.credits = credits;
+    }
+
+    private Credit[] credits;
 
         public String getTitle() {
             return Title;
@@ -132,47 +103,49 @@ public class Movie {
         private String Year;
 
 
-        static class Credit{
+        static class Credit {
             public Person getCredit() {
                 return credit;
             }
 
+            @JsonProperty("Person")
             public void setCredit(Person credit) {
                 this.credit = credit;
             }
 
             private Person credit;
 
-        }
-        static class Person{
-            private String Role;
 
-            public String getRole() {
-                return Role;
+            static class Person {
+                private String Role;
+
+                public String getRole() {
+                    return Role;
+                }
+
+                public void setRole(String role) {
+                    Role = role;
+                }
+
+                public String getFirstname() {
+                    return firstname;
+                }
+
+                public void setFirstname(String firstname) {
+                    this.firstname = firstname;
+                }
+
+                public String getLastname() {
+                    return lastname;
+                }
+
+                public void setLastname(String lastname) {
+                    this.lastname = lastname;
+                }
+
+                private String firstname;
+                private String lastname;
             }
-
-            public void setRole(String role) {
-                Role = role;
-            }
-
-            public String getFirstname() {
-                return firstname;
-            }
-
-            public void setFirstname(String firstname) {
-                this.firstname = firstname;
-            }
-
-            public String getLastname() {
-                return lastname;
-            }
-
-            public void setLastname(String lastname) {
-                this.lastname = lastname;
-            }
-
-            private String firstname;
-            private String lastname;
         }
 
 
