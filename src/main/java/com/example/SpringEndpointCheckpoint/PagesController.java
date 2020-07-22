@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.DeflaterOutputStream;
 
 @RestController
 public class PagesController {
@@ -195,12 +196,13 @@ public class PagesController {
 
 
         @PostMapping("/movies/gross/total")
-        public Map<String, Integer> sumMoviesTotal(@RequestBody() Movie[] movie) {
-            int total = 0;
-            for (Movie m  : movie) {
-                total += m.getGross();
+        public Map<String, Double> sumMoviesTotal(@RequestBody() Movie[] movies) {
+            double total = 0;
+            for (Movie movie  : movies) {
+                total += movie.getGross();
+                System.out.println(total);
             }
-            Map<String, Integer> result = new HashMap<>();
+            Map<String, Double> result = new HashMap<>();
             result.put("result", total);
             return result;
         }

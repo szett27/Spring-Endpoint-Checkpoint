@@ -2,10 +2,14 @@ package com.example.SpringEndpointCheckpoint;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Movie {
@@ -23,6 +27,12 @@ public class Movie {
 
         private String Description;
 
+    private int Votes;
+
+    private double Gross;
+
+    private String Year;
+
     public Credit[] getCredits() {
         return credits;
     }
@@ -35,6 +45,7 @@ public class Movie {
 
     private Credit[] credits;
 
+        @JsonProperty("title")
         public String getTitle() {
             return Title;
         }
@@ -44,7 +55,7 @@ public class Movie {
             Title = title;
         }
 
-
+        @JsonProperty("minutes")
         public int getMinutes() {
             return Minutes;
         }
@@ -54,6 +65,7 @@ public class Movie {
             Minutes = minutes;
         }
 
+        @JsonProperty("genre")
         public List<String> getGenre() {
             return Genre;
         }
@@ -63,6 +75,7 @@ public class Movie {
             Genre = genre;
         }
 
+        @JsonSetter("rating")
         public double getRating() {
             return Rating;
         }
@@ -72,6 +85,7 @@ public class Movie {
             Rating = rating;
         }
 
+        @JsonProperty("metascore")
         public int getMetascore() {
             return Metascore;
         }
@@ -81,6 +95,7 @@ public class Movie {
             Metascore = metascore;
         }
 
+        @JsonProperty("description")
         public String getDescription() {
             return Description;
         }
@@ -90,6 +105,7 @@ public class Movie {
             Description = description;
         }
 
+        @JsonSetter("votes")
         public int getVotes() {
             return Votes;
         }
@@ -99,6 +115,7 @@ public class Movie {
             Votes = votes;
         }
 
+        @JsonProperty("gross")
         public double getGross() {
             return Gross;
         }
@@ -118,11 +135,7 @@ public class Movie {
         }
 
 
-        private int Votes;
 
-        private double Gross;
-
-        private String Year;
 
 
         static class Credit {
@@ -141,6 +154,7 @@ public class Movie {
             static class Person {
                 private String Role;
 
+                @JsonProperty("role")
                 public String getRole() {
                     return Role;
                 }
